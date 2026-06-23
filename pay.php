@@ -22,28 +22,38 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 }
+include 'header.php';
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Simulated Payment</title><link rel="stylesheet" href="assets/css/style.css"></head>
-<body>
+<head><title>Simulated Payment · UbuntuBazaar</title><link rel="stylesheet" href="assets/css/style.css"></head>
+<body class="dark-theme">
 <div class="container">
-    <h2>Payment Details (Demo)</h2>
-    <p>Order #<?php echo $order_id; ?> | Total: R <?php echo number_format($order['total_amount'], 2); ?></p>
-    <p style="background: #fff3cd; padding: 10px;">This is a simulation. Any valid-looking card will work.</p>
-    <?php if($error): ?>
-        <p style="color:red;"><?php echo $error; ?></p>
-    <?php endif; ?>
-    <form method="POST">
-        <label>Card Number (any 16 digits)</label>
-        <input type="text" name="card_number" placeholder="4111 1111 1111 1111" required maxlength="19">
-        <label>Expiry (MM/YY)</label>
-        <input type="text" name="expiry" placeholder="12/28" required>
-        <label>CVV</label>
-        <input type="text" name="cvv" placeholder="123" required>
-        <button type="submit" class="btn">Pay Now (Simulated)</button>
-    </form>
-    <a href="cart.php">Back to cart</a>
+    <div class="glass-card" style="max-width:600px;">
+        <h2 style="color:#f1f5f9;">Payment Details (Demo)</h2>
+        <p>Order #<?php echo $order_id; ?> | Total: R <?php echo number_format($order['total_amount'], 2); ?></p>
+        <p style="background:rgba(245,158,11,0.15); padding:10px; border-radius:12px; color:#fbbf24;">This is a simulation. Any valid-looking card will work.</p>
+        <?php if($error): ?>
+            <p style="color:#f87171;"><?php echo $error; ?></p>
+        <?php endif; ?>
+        <form method="POST">
+            <div class="form-group">
+                <label>Card Number (any 16 digits)</label>
+                <input type="text" name="card_number" placeholder="4111 1111 1111 1111" required maxlength="19">
+            </div>
+            <div class="form-group">
+                <label>Expiry (MM/YY)</label>
+                <input type="text" name="expiry" placeholder="12/28" required>
+            </div>
+            <div class="form-group">
+                <label>CVV</label>
+                <input type="text" name="cvv" placeholder="123" required>
+            </div>
+            <button type="submit" class="btn" style="width:100%;">Pay Now (Simulated)</button>
+        </form>
+        <a href="cart.php" class="back-link">← Back to cart</a>
+    </div>
 </div>
+<?php include 'footer.php'; ?>
 </body>
 </html>
